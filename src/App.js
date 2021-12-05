@@ -1,13 +1,13 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import ItemList from ".//components/ItemListContainer/ItemList";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <div className="App">
       <Navbar NombreTienda="Yes I Can" />
-      <ItemList greeting="HOla que tal" />
+      <ItemListContainer />
       <Footer />
     </div>
   );
