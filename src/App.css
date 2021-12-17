@@ -109,7 +109,9 @@ nav {
 }
 
 .ItemListContainer,
-.Counter {
+.Counter,
+.ItemDetailsContainer,
+.ItemDetail {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
