@@ -9,6 +9,7 @@ const ItemList = (props) => {
         meta={props.meta}
         description={props.description}
         img={props.img}
+        id={props.id}
       />
     </div>
   );

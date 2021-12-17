@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Card, Image, Icon } from "semantic-ui-react";
+import { NavLink, useLocation } from "react-router-dom";
 //import UkeImg from "../../../img/uke_les_paul.jpg";
 //<h1>{props.greeting}</h1>
 
@@ -23,6 +24,8 @@ const Counter = (props) => {
     }
   };
 
+  let location = useLocation();
+
   return (
     <div className="Counter">
       {/* aca va el contador  */}
@@ -30,8 +33,6 @@ const Counter = (props) => {
         <Card.Content>
           <Image floated="right" size="normal" src={props.img} />
           <Card.Header>{props.header}</Card.Header>
-          <Card.Meta>{props.meta}</Card.Meta>
-          <Card.Description>{props.description}</Card.Description>
         </Card.Content>
         <Card.Content extra>
           <h1>
@@ -50,13 +51,18 @@ const Counter = (props) => {
         </Card.Content>
         <Card.Content extra>
           <div>
-            <Button size="massive" animated="fade">
-              <Button.Content visible>Agregar al carrito</Button.Content>
-              <Button.Content hidden>
-                {" "}
-                <Icon name="shop" />
-              </Button.Content>
-            </Button>
+            <NavLink
+              to={`${location.pathname}/${props.id}`}
+              innerRef={props.id}
+            >
+              <Button size="massive" animated="fade">
+                <Button.Content visible>Ir al detalle</Button.Content>
+                <Button.Content hidden>
+                  {" "}
+                  <Icon name="clipboard outline" />
+                </Button.Content>
+              </Button>
+            </NavLink>
           </div>
         </Card.Content>
       </Card>

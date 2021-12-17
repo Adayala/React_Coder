@@ -1,63 +1,42 @@
 import React from "react";
 import ItemList from "../ItemList/ItemList";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = () => {
-  const products = [
-    {
-      id: 1,
-      header: "Ukelele soprano",
-      meta: "Modelo Les Paul",
-      description: "Bellisimo ukelele con diseño Les Paul",
-      img: "https://www.mrcdinstrumentos.com.mx/shared/productos/19757/EULTVSNH1.jpg",
-    },
-    {
-      id: 2,
-      header: "Ukelele soprano 2",
-      meta: "Modelo Pineapple",
-      description: "Clasico diseño con maderas solidas",
-      img: "https://deukelele.com/wp-content/uploads/2020/03/Ukelele-Pineaple.jpg",
-    },
-    {
-      id: 3,
-      header: "Ukelele soprano 2",
-      meta: "Banjolele",
-      description: "Todo el jazz en un instrumento",
-      img: "https://www.banjoteacher.com/5528-large_default_2x/gold-tone-banjolele-deluxe.jpg",
-    },
-  ];
-
-  /*const getProductos = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(products);
-      }, 2000);
-    });
-  };*/
-
+  const { id, item } = useParams();
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    const promesa = new Promise((res, rej) => {
-      setTimeout(() => {
-        res(products);
-      }, 2000);
-    });
+    if (!id) {
+      fetch("https://61ae7312a7c7f3001786f850.mockapi.io/api/yesican/music")
+        .then((res) => res.json())
+        .then((json) => {
+          setProductos(json);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      fetch(`https://61ae7312a7c7f3001786f850.mockapi.io/api/yesican/${id}`)
+        .then((res) => res.json())
+        .then((json) => {
+          setProductos(json);
+        });
+    }
+  }, [id]);
 
-    promesa
-      .then((resultado) => {
-        setProductos(resultado);
-      })
-      .catch(() => {
-        console.log("Error...");
-      });
-  }, []);
-
-  return (
-    <div className="ItemListContainer">
-      <ItemList products={productos} />
-    </div>
-  );
+  if (productos.length === 0) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  } else {
+    return (
+      <div className="ItemListContainer">
+        <ItemList products={productos} />
+      </div>
+    );
+  }
 };
 
 export default ItemListContainer;

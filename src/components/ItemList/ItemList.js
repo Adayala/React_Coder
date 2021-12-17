@@ -10,6 +10,7 @@ const ItemList = ({ products }) => {
           meta={product.meta}
           description={product.description}
           img={product.img}
+          id={product.id}
         />
       ))}
     </div>
