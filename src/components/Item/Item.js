@@ -1,10 +1,10 @@
 import React from "react";
-import Counter from "./Counter/Counter";
+import Preview from "./Preview/Preview";
 
 const ItemList = (props) => {
   return (
     <div className="Item">
-      <Counter
+      <Preview
         header={props.header}
         meta={props.meta}
         description={props.description}

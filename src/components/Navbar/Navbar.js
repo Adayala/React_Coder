@@ -1,5 +1,5 @@
 import React from "react";
-import Cart from "../Navbar/Cart/cart";
+import CartWidget from "./CartWidget/CartWidget";
 import { NavLink } from "react-router-dom";
 
 const Navbar = (props) => {
@@ -26,7 +26,7 @@ const Navbar = (props) => {
         </ul>
       </div>
       <div className="menu_end">
-        <Cart />
+        <CartWidget />
       </div>
     </nav>
   );
