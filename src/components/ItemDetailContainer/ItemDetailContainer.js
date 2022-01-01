@@ -50,10 +50,13 @@ const ItemDetailContainer = () => {
     return (
       <div className="ItemDetailContainer">
         <ItemDetail
+          id={producto.id}
           img={producto.img}
           header={producto.header}
           meta={producto.meta}
           description={producto.description}
+          StockTotal={producto.StockTotal}
+          Initial={producto.Initial}
         />
       </div>
     );

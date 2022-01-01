@@ -40,7 +40,13 @@ const ItemShop = (props) => {
       </Card>
     );
   } else {
-    return <ItemCount stockTotal={10} initial={1} CarritoAdd={Carrito} />;
+    return (
+      <ItemCount
+        stockTotal={props.StockTotal}
+        initial={props.Initial}
+        CarritoAdd={Carrito}
+      />
+    );
   }
 
   /*aca le paso hardCodeado el sctockTotal, initial pero se debe tomar de la API*/

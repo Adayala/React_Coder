@@ -20,7 +20,11 @@ const ItemDetail = (props) => {
         <Card.Content extra>
           {" "}
           <div>
-            <ItemShop />{" "}
+            <ItemShop
+              id={props.id}
+              StockTotal={props.StockTotal}
+              Initial={props.Initial}
+            />{" "}
           </div>{" "}
         </Card.Content>
       </Card>
