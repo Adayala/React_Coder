@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Card, Image, Icon } from "semantic-ui-react";
 import { NavLink, useLocation } from "react-router-dom";
 //import UkeImg from "../../../img/uke_les_paul.jpg";
@@ -12,7 +12,7 @@ const Preview = (props) => {
       {/* aca va el contador  */}
       <Card>
         <Card.Content>
-          <Image floated="right" size="normal" src={props.img} />
+          <Image floated="right" size="medium" src={props.img} />
           <Card.Header>{props.header}</Card.Header>
         </Card.Content>
 

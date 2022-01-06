@@ -9,9 +9,14 @@ import { context } from "../../components/CartContext/CartContext";
 const ItemShop = (props) => {
   const resultado = useContext(context);
   const [CartConfirm, setCartConfirm] = useState(false);
-  const Carrito = (contador) => {
+  const Carrito = (producto, contador) => {
     setCartConfirm(true);
-    resultado.agregarProducto({}, contador);
+    resultado.agregarProducto(producto, contador);
+    console.log("Agregar al carrito: Producto");
+    console.log(producto);
+
+    console.log("Agregar al carrito: Cantidad");
+    console.log(contador);
 
     if (CartConfirm) {
       console.log("CartConfirm es true");
@@ -42,14 +47,17 @@ const ItemShop = (props) => {
   } else {
     return (
       <ItemCount
+        id={props.id}
+        img={props.img}
+        header={props.header}
+        meta={props.meta}
+        description={props.description}
         stockTotal={props.StockTotal}
         initial={props.Initial}
         CarritoAdd={Carrito}
       />
     );
   }
-
-  /*aca le paso hardCodeado el sctockTotal, initial pero se debe tomar de la API*/
 };
 
 export default ItemShop;

@@ -4,42 +4,59 @@ export const context = createContext();
 const { Provider } = context;
 
 const CartContext = ({ children }) => {
-  const [carrito, setCarrito] = useState([
-    {
-      id: 1,
-      header: "Ukelele soprano",
-      meta: "Modelo Les Paul",
-      description: "Bellisimo ukelele con diseño Les Paul",
-      img: "https://www.mrcdinstrumentos.com.mx/shared/productos/19757/EULTVSNH1.jpg",
-    },
-    {
-      id: 2,
-      header: "Ukelele soprano 2",
-      meta: "Modelo Pineapple",
-      description: "Clasico diseño con maderas solidas",
-      img: "https://deukelele.com/wp-content/uploads/2020/03/Ukelele-Pineaple.jpg",
-    },
-    {
-      id: 3,
-      header: "Ukelele soprano 2",
-      meta: "Banjolele",
-      description: "Todo el jazz en un instrumento",
-      img: "https://www.banjoteacher.com/5528-large_default_2x/gold-tone-banjolele-deluxe.jpg",
-    },
-  ]);
-  const [cantidad, setCantidad] = useState(12);
+  const [carrito, setCarrito] = useState([]);
+  const [cantidad, setCantidad] = useState(0);
+  //const [isInCart, SetisInCart] = useState();
+
+  const isInCart = (prod) => {
+    return carrito.find((elem) => elem.key === prod.key);
+    //carrito.find((elem) => elem.key === prod.key);
+
+    //console.log(prod.key);
+  };
+
   const agregarProducto = (producto, canti) => {
     //    setCantidad(cantidad + canti);
-    setCantidad(cantidad + canti);
-    console.log("luego de modificar el contador por context");
-    console.log(cantidad);
+    //const isInCart = carrito.find((key) => (key = producto.key));
+    //SetisInCart(carrito.find((element) => element.key === producto.key));
+
+    //if (!isInCart || carrito.entries(carrito).length === 0) {
+    if (isInCart(producto) === undefined) {
+      //console.log("isInCart dentro del if");
+      //console.log(isInCart);
+
+      setCantidad(cantidad + canti);
+
+      const copyProducto = carrito;
+      //SETEO LA CANTIDAD DE UNIDADES PARA ESTE PROD
+      producto.cantidad = canti;
+
+      //AGREGO EL PRODUCTO EN EL CARRITO
+      setCarrito([...copyProducto, producto]);
+    } else {
+      console.log("No se puede insertar por producto repetido");
+    }
+
     //isInCart();
     //carrito[0].cantidad = +cantidad ESTO NO!!!
     //const res = array.filter(condicion) // [{}]
   };
 
-  const isInCart = (id) => {};
-  const eliminarProducto = (id) => {};
+  const eliminarProducto = (id, unidades) => {
+    //COPIA NUEVA DEL CARRITO SIN EL ELEMENTO A ELIMINAR
+    const copyCarrito = carrito.filter((Prod) => Prod.key !== id);
+    console.log(
+      "copyCarrito: se supone que tiene todo menos el que se eliminó"
+    );
+    console.log(copyCarrito);
+    //ACTUALIZO EL ACCRITO
+    setCarrito([]);
+    setCarrito(copyCarrito);
+    console.log(copyCarrito);
+    console.log(carrito);
+
+    setCantidad(cantidad - unidades);
+  };
 
   const vaciarCarrito = () => {
     setCarrito([]);

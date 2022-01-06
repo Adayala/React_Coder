@@ -1,9 +1,30 @@
 import React, { useState } from "react";
-import { Button, Card, Image, Icon } from "semantic-ui-react";
+import { Button, Card, Icon } from "semantic-ui-react";
 
-const ItemCount = ({ stockTotal, initial, CarritoAdd }) => {
+const ItemCount = ({
+  id,
+  img,
+  header,
+  meta,
+  description,
+  stockTotal,
+  initial,
+  CarritoAdd,
+}) => {
   const [stock, setStock] = useState(stockTotal);
   const [count, setCount] = useState(initial);
+  const ProductoCarrito = {
+    key: id,
+    header: header,
+    meta: meta,
+    description: description,
+    img: img,
+    cantidad: 0,
+  };
+  console.log(
+    "Producto para el carrito dentro de ItemCount ni bien recibe los props"
+  );
+  console.log(ProductoCarrito);
 
   const sumar = () => {
     if (count < stockTotal) {
@@ -45,7 +66,7 @@ const ItemCount = ({ stockTotal, initial, CarritoAdd }) => {
           <Button
             disabled={stockTotal <= 0}
             onClick={() => {
-              CarritoAdd(count);
+              CarritoAdd(ProductoCarrito, count);
             }}
             size="massive"
             animated="fade"
